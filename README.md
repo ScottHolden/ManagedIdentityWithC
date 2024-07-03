@@ -34,12 +34,14 @@ DB_NAME=postgres DB_HOSTNAME=example.postgres.database.azure.com DB_USERNAME=exa
 ### On Azure (proof of concept)
 You can use the "Deploy to Azure" button below to deploy an Azure Container App running this code, and an Azure PostgreSQL Flex server.
 
-**NOTE: THIS IS STILL A WORK IN PROGRESS AND MAY NOT WORK AS EXPECTED**
-
-[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FScottHolden%2FManagedIdentityWithC%2Fmain%2Fdeploy%2Fdeploy.generated.json)
+[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FScottHolden%2FManagedIdentityWithC%2Fmain%2Fdeploy%2Fdeploy.generated.json)  
+`Estimated deployment time: 8 minutes` 
 
 By default it will use a pre-built container image & a burstable B1ms Azure PostgreSQL Flex SKU, but you can modify these settings on the parameters page.
 
+**Note:** _Due to the order of resources being deployed the first execution of the Container App may fail. This is because the administrator resource that gives the Container App may not be created before the Container App is started. If this happens, simply restart the Container App._  
+
+Once deployed you can open the Container App resource (named `cmsipg`), click "Log Stream" under "Monitoring" to see the output of the application.
 
 ## How it works
 Within the [lib](lib/) directory there is a small example wrapper that exposes a method to request an Access Token using the Azure Identity SDK. This uses the [DefaultAzureCredential](https://devblogs.microsoft.com/azure-sdk/authentication-and-the-azure-sdk/) implementation to authenticate, which will try to authenticate using environment variables, managed identity (including workload identity), and the Azure CLI. 
