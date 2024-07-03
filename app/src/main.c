@@ -55,8 +55,8 @@ char* getTokenPassword() {
     free(token);
     free(errors);
 
-    printf("Token recieved\n");
-    return token;
+    printf("Token received\n");
+    return tokenCopy;
 }
 
 // Formats required values into a libpq connection string
@@ -73,10 +73,7 @@ char* buildConnectionString(const char* dbHostname, const char* dbName, const in
 
     snprintf(connectionString, requiredSize, connectionStringFormat, dbHostname, dbName, dbPort, dbUsername, dbPassword);
 
-    char* connectionStringCopy = strdup(connectionString);
-    free(connectionString);
-
-    return connectionStringCopy;
+    return connectionString;
 }
 
 // Entry point
