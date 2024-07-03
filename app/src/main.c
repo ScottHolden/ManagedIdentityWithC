@@ -4,7 +4,7 @@
 #include <libpq-fe.h>
 #include <msi_auth_lib.h>
 
-// Returns a copy of an enviroment variable if found
+// Returns a copy of an environment variable if found
 char* getenvdup(const char* name) {
     if (name == NULL || strcmp(name, "") == 0) {
         return NULL;
@@ -18,6 +18,17 @@ char* getenvdup(const char* name) {
     }
 
     return strdup(value);
+}
+
+// Returns a flag if an environment variable is found
+int getenvflag(const char* name) {
+    if (name == NULL || strcmp(name, "") == 0) {
+        return 0;
+    }
+
+    char* value = getenv(name);
+
+    return (value != NULL && strcasecmp(value, "true") == 0) ? 1 : 0;
 }
 
 // Retrieves an Entra ID token from our library scoped to Azure PostgreSQL Flex
@@ -71,6 +82,7 @@ int main() {
     const char* dbName = getenvdup("DB_NAME");
     const char* dbUsername = getenvdup("DB_USERNAME");
     const int   dbPort = 5432;
+    const int   debug = getenvflag("DEBUG");
     
     // Null checks
     if (dbHostname == NULL || dbName == NULL || dbUsername == NULL) {
@@ -92,7 +104,9 @@ int main() {
     }
     printf("Built connection string with an EntraID token!\n");
 
-    // printf("Debug connection string: %s\n", connectionString);
+    if (debug == 1) {
+        printf("Debug connection string: %s\n", connectionString);
+    }
 
     PGconn* connection = PQconnectdb(connectionString);
 
