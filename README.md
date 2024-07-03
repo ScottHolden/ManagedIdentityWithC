@@ -1,4 +1,4 @@
-# ManagedIdentityWithC
+# Managed Identity With C
 Managed Identity with C, connecting to an Azure PostgreSQL 
 
 This is a small sample to show an approach of wrapping the C++ Azure SDK and using it in a C application. 
@@ -33,6 +33,8 @@ DB_NAME=postgres DB_HOSTNAME=example.postgres.database.azure.com DB_USERNAME=exa
 
 ### On Azure (proof of concept)
 You can use the "Deploy to Azure" button below to deploy an Azure Container App running this code, and an Azure PostgreSQL Flex server.
+
+**NOTE: THIS IS STILL A WORK IN PROGRESS AND MAY NOT WORK AS EXPECTED**
 
 [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FScottHolden%2FManagedIdentityWithC%2Fmain%2Fdeploy%2Fdeploy.generated.json)
 
