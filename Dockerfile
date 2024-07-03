@@ -11,4 +11,4 @@ RUN make
 FROM ubuntu:latest
 WORKDIR /app
 COPY --from=builder /app/build/app .
-CMD ["./SampleApp"]
+CMD ./SampleApp && sleep 60s
