@@ -73,7 +73,10 @@ char* buildConnectionString(const char* dbHostname, const char* dbName, const in
 
     snprintf(connectionString, requiredSize, connectionStringFormat, dbHostname, dbName, dbPort, dbUsername, dbPassword);
 
-    return connectionString;
+    char* connectionStringCopy = strdup(connectionString);
+    free(connectionString);
+
+    return connectionStringCopy;
 }
 
 // Entry point
@@ -95,17 +98,21 @@ int main() {
     if (dbPassword == NULL) {
         return 1;
     }
+
+    if (debug == 1) {
+        printf("\nDebug token: \n%s\n", dbPassword);
+    }
     
     // Build a connection string
     const char* connectionString = buildConnectionString(dbHostname, dbName, dbPort, dbUsername, dbPassword);
     
-    if (dbPassword == NULL) {
+    if (connectionString == NULL) {
         return 1;
     }
     printf("Built connection string with an EntraID token!\n");
 
     if (debug == 1) {
-        printf("Debug connection string: %s\n", connectionString);
+        printf("\nDebug connection string: \n%s\n", connectionString);
     }
 
     PGconn* connection = PQconnectdb(connectionString);
