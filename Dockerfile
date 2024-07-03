@@ -9,6 +9,8 @@ RUN cmake ..
 RUN make
 
 FROM ubuntu:latest
+RUN apt-get update && \
+    apt-get install -y libpq5
 WORKDIR /app
 COPY --from=builder /app/build/app .
 CMD ./SampleApp && sleep 60s
