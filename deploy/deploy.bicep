@@ -17,7 +17,6 @@ param pgStorageSizeGB int = 128
 param pgStorageTier string = 'P10'
 
 var databaseName = 'postgres'
-var containerAppUsername = 'containerapp'
 
 var uniqueNameFormat = '${prefix}-{0}-${uniqueString(resourceGroup().id, prefix)}'
 
@@ -67,7 +66,7 @@ module containerAppAdministrator 'pgAdmin.bicep' = {
   params: {
     objectId: containerApp.identity.principalId
     postgresName: postgres.name
-    principalName: containerAppUsername
+    principalName: containerApp.name
     principalType: 'ServicePrincipal'
   }
 }
@@ -128,7 +127,7 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
             }
             {
               name: 'DB_USERNAME'
-              value: containerAppUsername
+              value: prefix // Same as containerApp.name
             }
           ]
         }

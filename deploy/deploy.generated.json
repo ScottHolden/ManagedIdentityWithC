@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.28.1.47646",
-      "templateHash": "16730375659019578518"
+      "templateHash": "1161412178011391872"
     }
   },
   "parameters": {
@@ -60,7 +60,6 @@
   },
   "variables": {
     "databaseName": "postgres",
-    "containerAppUsername": "containerapp",
     "uniqueNameFormat": "[format('{0}-{{0}}-{1}', parameters('prefix'), uniqueString(resourceGroup().id, parameters('prefix')))]"
   },
   "resources": [
@@ -174,7 +173,7 @@
                 },
                 {
                   "name": "DB_USERNAME",
-                  "value": "[variables('containerAppUsername')]"
+                  "value": "[parameters('prefix')]"
                 }
               ]
             }
@@ -203,7 +202,7 @@
             "value": "[format(variables('uniqueNameFormat'), 'pg')]"
           },
           "principalName": {
-            "value": "[variables('containerAppUsername')]"
+            "value": "[parameters('prefix')]"
           },
           "principalType": {
             "value": "ServicePrincipal"
