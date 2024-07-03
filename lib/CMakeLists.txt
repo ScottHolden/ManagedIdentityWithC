@@ -12,6 +12,7 @@ include(FetchContent)
 #  Workaround to remove amqp build steps
 set(BUILD_WINDOWS_UWP True)
 set(DISABLE_AZURE_CORE_OPENTELEMETRY True)
+set(WARNINGS_AS_ERRORS False)
 FetchContent_Declare(azuresdkforcpp
     # Set the SDK URL path and release tag
     GIT_REPOSITORY      https://github.com/Azure/azure-sdk-for-cpp.git
