@@ -5,7 +5,7 @@ param location string = resourceGroup().location
 param prefix string = 'cmsipg'
 
 @description('The container image to run')
-param containerAppImage string = 'ghcr.io/scottholden/managedidentitywithc:sha-c30febe'
+param containerAppImage string = 'ghcr.io/scottholden/managedidentitywithc:release'
 
 @description('Tags to apply to all deployed resources')
 param tags object = {}
