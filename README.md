@@ -1,5 +1,5 @@
 # Managed Identity With C
-Managed Identity with C, connecting to an Azure PostgreSQL 
+Managed Identity with C (and connecting to an Azure PostgreSQL Flex Server!)
 
 This is a small sample to show an approach of wrapping the C++ Azure SDK and using it in a C application. 
 
@@ -39,7 +39,7 @@ You can use the "Deploy to Azure" button below to deploy an Azure Container App 
 
 By default it will use a pre-built container image & a burstable B1ms Azure PostgreSQL Flex SKU, but you can modify these settings on the parameters page.
 
-**Note:** _Due to the order of resources being deployed the first execution of the Container App may fail. This is because the administrator resource that gives the Container App may not be created before the Container App is started. If this happens, simply restart the Container App._  
+**Note:** _Due to the order of resources being deployed the first execution of the Container App may fail. This is because the administrator sub-resource that gives the Container App's identity access may not be created before the Container App is started. If this happens, simply restart the Container App._  
 
 Once deployed you can open the Container App resource (named `cmsipg`), click "Log Stream" under "Monitoring" to see the output of the application.
 
