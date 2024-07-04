@@ -20,7 +20,7 @@ int getEntraIDToken(const char * tokenScope, char** token, char** errors)
         //  But this could be switched to WorkloadIdentityCredential to only use that one auth method
         auto azureCredential = std::make_shared<Azure::Identity::DefaultAzureCredential>();
 
-        // Build out our request, specificing the token scope
+        // Build out our request, specifying the token scope
         Azure::Core::Credentials::TokenRequestContext requestContext;
         requestContext.Scopes = {scope};
 
@@ -39,7 +39,7 @@ int getEntraIDToken(const char * tokenScope, char** token, char** errors)
         auto errorMessage = exception.what();
 
         // Copy it out
-        *errors = new char[strlen(errorMessage)];
+        *errors = new char[strlen(errorMessage) + 1];
         std::strcpy(*errors, errorMessage);       
     }
 
